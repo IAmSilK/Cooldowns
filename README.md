@@ -61,4 +61,4 @@ All of the following are valid cooldown time spans:
 - 30 seconds 500 milliseconds
 
 ## Permissions
-This plugin only contains one permission - `SilK.Cooldowns:immune`. This permission makes the inheritor immune to all cooldowns.
+This plugin only contains one permission - `Cooldowns:immune`. This permission makes the inheritor immune to all cooldowns.
