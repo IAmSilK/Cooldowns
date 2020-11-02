@@ -1,0 +1,2 @@
+cooldown:
+  command: "This command is still on cooldown ({TimeLeft.TotalSeconds:F} seconds)"
