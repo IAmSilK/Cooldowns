@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Cooldowns.Services
 {
-    [ServiceImplementation(Lifetime = ServiceLifetime.Transient, Priority = Priority.Lowest)]
+    [ServiceImplementation(Lifetime = ServiceLifetime.Singleton, Priority = Priority.Lowest)]
     public class CooldownManager : ICooldownManager
     {
         private readonly IPluginAccessor<CooldownsPlugin> m_PluginAccessor;
