@@ -14,7 +14,6 @@ using Rocket.Core;
 using Rocket.Unturned;
 using Rocket.Unturned.Player;
 using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 [assembly: PluginMetadata("Cooldowns.Rocket", DisplayName = "Rocket Cooldowns", Author = "SilK")]
@@ -28,8 +27,6 @@ namespace Cooldowns.Rocket
         private readonly IPluginAccessor<CooldownsPlugin> m_CooldownsPluginAccessor;
         private readonly IPluginAccessor<RocketUnturnedOpenModPlugin> m_RocketUnturnedOpenModPluginAccessor;
         private readonly ICooldownManager m_CooldownManager;
-
-        private static readonly Regex s_CommandRegex = new Regex("^\\S*");
 
         public const string RocketCooldownsFormat = "Rocket.{0}";
 
