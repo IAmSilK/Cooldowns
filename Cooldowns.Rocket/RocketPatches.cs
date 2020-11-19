@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using OpenMod.Core.Commands.Events;
-using Rocket.Unturned.Commands;
 using System.Threading.Tasks;
+using RocketCommands = Rocket.Unturned.Commands;
 
 namespace Cooldowns.Rocket
 {
@@ -13,7 +13,7 @@ namespace Cooldowns.Rocket
         [HarmonyPatch]
         private class Patches
         {
-            [HarmonyPatch(typeof(CommandEventListener), "HandleEventAsync")]
+            [HarmonyPatch(typeof(RocketCommands.CommandEventListener), "HandleEventAsync")]
             [HarmonyPostfix]
             private static void ExecutingCommand(CommandExecutedEvent @event, ref Task __result)
             {
