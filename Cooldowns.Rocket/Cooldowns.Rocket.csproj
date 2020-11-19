@@ -26,10 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Cooldowns\Cooldowns.csproj" />
+    <PackageReference Include="SilK.Cooldowns" Version="1.0.3" />
   </ItemGroup>
 
 </Project>
