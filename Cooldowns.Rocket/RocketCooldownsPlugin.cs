@@ -62,7 +62,7 @@ namespace Cooldowns.Rocket
             var original = task;
 
             // Rocket's attempt at executing commands is hooked rather than using
-            // it's native event as it allows us to run asynchronous code
+            // its native event as it allows us to run asynchronous code
 
             async Task CheckCooldown()
             {
