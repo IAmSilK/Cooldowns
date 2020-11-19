@@ -34,8 +34,6 @@ namespace Cooldowns.Commands
         private readonly IEventBus m_EventBus;
         private readonly ILogger<CooldownsCommandExecutor> m_Logger;
         private readonly ICooldownManager m_CooldownManager;
-        private readonly IPermissionRoleStore m_PermissionRoleStore;
-        private readonly IPermissionRolesDataStore m_PermissionRolesDataStore;
         private readonly IPluginAccessor<CooldownsPlugin> m_PluginAccessor;
 
         public CooldownsCommandExecutor(
@@ -46,8 +44,6 @@ namespace Cooldowns.Commands
             IEventBus eventBus,
             ILogger<CooldownsCommandExecutor> logger,
             ICooldownManager cooldownManager,
-            IPermissionRoleStore permissionRoleStore,
-            IPermissionRolesDataStore permissionRolesDataStore,
             IPluginAccessor<CooldownsPlugin> pluginAccessor)
         {
             m_Runtime = runtime;
@@ -57,52 +53,7 @@ namespace Cooldowns.Commands
             m_EventBus = eventBus;
             m_Logger = logger;
             m_CooldownManager = cooldownManager;
-            m_PermissionRoleStore = permissionRoleStore;
-            m_PermissionRolesDataStore = permissionRolesDataStore;
             m_PluginAccessor = pluginAccessor;
-        }
-
-        private async Task<TimeSpan?> GetCooldownSpan(ICommandActor actor, ICommandRegistration command)
-        {
-            var roles = await m_PermissionRoleStore.GetRolesAsync(actor);
-
-            if (roles == null || roles.Count == 0) return null;
-
-            TimeSpan? span = null;
-            int priority = 0;
-
-            foreach (var role in roles)
-            {
-                try
-                {
-                    // Skip as result won't matter
-                    if (span.HasValue && priority >= role.Priority) continue;
-
-                    var data =
-                        (await m_PermissionRolesDataStore.GetRoleDataAsync<List<object>>(role.Id,
-                            "cooldowns"))?.OfType<Dictionary<object, object>>();
-
-                    if (data == null) continue;
-                    
-                    foreach (var dict in data)
-                    {
-                        var currentSpan = dict.ToObject<CooldownSpan>();
-
-                        if (currentSpan.Command.Equals(command.Id, StringComparison.OrdinalIgnoreCase))
-                        {
-                            span = currentSpan.GetParsedCooldown();
-                            priority = role.Priority;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    m_Logger.LogError(ex, "Error occurred while parsing command cooldown");
-                    throw;
-                }
-            }
-
-            return span;
         }
 
         public async Task<ICommandContext> ExecuteAsync(ICommandActor actor, string[] args, string prefix)
@@ -145,7 +96,7 @@ namespace Cooldowns.Commands
                     throw new NotEnoughPermissionException(stringLocalizer, permission);
                 }
 
-                var cooldownSpan = await GetCooldownSpan(actor, commandContext.CommandRegistration);
+                var cooldownSpan = await m_PluginAccessor.Instance.GetCooldownSpan(actor, commandContext.CommandRegistration.Id);
 
                 if (cooldownSpan.HasValue)
                 {
