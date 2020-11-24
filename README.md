@@ -5,6 +5,8 @@ An OpenMod plugin which adds command cooldowns.
 
 To install, use the command `openmod install SilK.Cooldowns`.
 
+To install RocketMod cooldowns too, use the command `openmod install SilK.Cooldowns.Rocket`.
+
 ## Configuration
 
 The default config file contains one setting, `reloadPersistent:enabled` which is set to `true`.
@@ -17,6 +19,9 @@ cooldowns:
 - command: CommandId
   cooldown: cooldown time span
 ```
+
+If you're using `SilK.Cooldowns.Rocket`, the command id will be the name found in `Commands.config.xml` prefixed by `Rocket.`.
+For the `/heal` command, the id would be `Rocket.heal`.
 
 The following example is a modified version of the default `openmod.roles.yaml` file to apply a cooldown of 30 seconds to the help command.
 ```yaml
