@@ -14,7 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-[assembly: PluginMetadata("Cooldowns", DisplayName = "Cooldowns", Author = "SilK")]
+[assembly: PluginMetadata("OpenMod.Cooldowns", DisplayName = "Cooldowns", Author = "SilK")]
 namespace Cooldowns
 {
     public class CooldownsPlugin : OpenModUniversalPlugin
