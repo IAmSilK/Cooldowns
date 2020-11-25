@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-	<PackageId>SilK.Cooldowns.Rocket</PackageId>
+	<PackageId>OpenMod.Cooldowns.Rocket</PackageId>
 	<PackageDescription>An OpenMod plugin which adds command cooldowns to Rocket commands.</PackageDescription>
 	<PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
 	<PackageAuthor>Stephen White</PackageAuthor>
@@ -26,7 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SilK.Cooldowns" Version="1.0.3" />
+    <PackageReference Include="OpenMod.Cooldowns" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

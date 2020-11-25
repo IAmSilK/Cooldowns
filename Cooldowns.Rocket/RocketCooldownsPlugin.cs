@@ -16,7 +16,7 @@ using Rocket.Unturned.Player;
 using System;
 using System.Threading.Tasks;
 
-[assembly: PluginMetadata("Cooldowns.Rocket", DisplayName = "Rocket Cooldowns", Author = "SilK")]
+[assembly: PluginMetadata("OpenMod.Cooldowns.Rocket", DisplayName = "Rocket Cooldowns", Author = "SilK")]
 namespace Cooldowns.Rocket
 {
     public class RocketCooldownsPlugin : OpenModUnturnedPlugin
