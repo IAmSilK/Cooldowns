@@ -49,6 +49,8 @@ namespace Cooldowns.Services
 
             m_LoadedStore.Add(actorId);
 
+            if (!await DataStore.ExistsAsync(actorId)) return null;
+
             var records = await DataStore.LoadAsync<List<CooldownRecord>>(actorId);
 
             if (records == null) return null;
